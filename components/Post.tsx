@@ -29,7 +29,6 @@ import {
 import { deletePost, likePostToggle } from "@/actions/user-post";
 import { toast } from "sonner";
 import { Category } from "@prisma/client";
-import Image from "next/image";
 
 type Props = {
   post: {
@@ -208,7 +207,7 @@ export const Post = ({ post, currentUserId }: Props) => {
             </span>
           )}
           {post.image && (
-            <Image
+            <img
               src={post.image}
               alt="Imagen del post"
               className="w-full max-h-80 object-cover rounded-md mt-4"

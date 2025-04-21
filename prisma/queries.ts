@@ -31,6 +31,28 @@ export const getAllUsers = cache(async () => {
 });
 
 /**
+ * Retrives all usuers except the current user
+ */
+export const getAllOtherUsers = cache(async () => {
+  const { userId } = auth();
+  if (!userId) return []; // si no está auth, no hay listado
+
+  // recupera el registro Prisma del usuario actual
+  const current = await client.user.findUnique({
+    where: { authUserId: userId },
+    select: { id: true },
+  });
+  if (!current) return [];
+
+  // busca todos menos el current.id
+  const users = await client.user.findMany({
+    where: { id: { not: current.id } },
+  });
+
+  return users;
+});
+
+/**
  * Retrieves the user details based on the authenticated user ID.
  */
 export const getUserDetails = cache(async () => {
@@ -89,7 +111,6 @@ export const getPosts = cache(async (filter?: { category: Category }) => {
 
   return normalizedPosts;
 });
-
 
 /**
  * Retrieves at random post

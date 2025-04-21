@@ -1,10 +1,10 @@
-import { getAllUsers, getAuthUser } from "@/prisma/queries";
+import { getAllOtherUsers, getAuthUser } from "@/prisma/queries";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { FollowButton } from "./follow-button";
 
 export const FollowBar = async () => {
   const [users, currentUser] = await Promise.all([
-    getAllUsers(),
+    getAllOtherUsers(),
     getAuthUser(),
   ]);
 
