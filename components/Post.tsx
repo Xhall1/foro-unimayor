@@ -125,7 +125,11 @@ export const Post = ({ post, currentUserId }: Props) => {
   const displayName = post.user.name ?? post.user.username;
 
   return (
-    <Card key={post.id} className="w-full max-w-md mx-auto">
+    // <Card key={post.id} className="w-full max-w-md mx-auto">
+    <Card
+      key={post.id}
+      className="w-full max-w-[600px] mx-auto bg-background border border-border rounded-lg shadow-sm"
+    >
       <CardHeader>
         <div className="flex justify-between gap-1">
           <div className="flex gap-1 items-center">

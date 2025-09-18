@@ -15,13 +15,26 @@ const LearnPage = async () => {
 
   return (
     <div className="flex flex-row gap-[48px] px-6">
-      <FeedWrapper>
+      {/*
+        <FeedWrapper>
         <Form
           // TODO: remove hard-coded values
           image={user.image || "image test"}
           name={user.name || "test name"}
         />
         <div className="w-auto h-auto px-auto space-y-4">
+          {posts.map((post) => (
+            <Post key={post.id} post={post} currentUserId={user.authUserId} />
+          ))}
+        </div>
+      </FeedWrapper>
+      */}
+      <FeedWrapper>
+        <div className="flex flex-col items-center space-y-4">
+          <Form
+            image={user.image || "image test"}
+            name={user.name || "test name"}
+          />
           {posts.map((post) => (
             <Post key={post.id} post={post} currentUserId={user.authUserId} />
           ))}
