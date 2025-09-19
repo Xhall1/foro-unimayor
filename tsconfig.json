@@ -32,7 +32,6 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "components/Post.tsc"
   ],
   "exclude": [
     "node_modules"
