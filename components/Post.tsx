@@ -100,12 +100,18 @@ export const Post = ({ post, currentUserId }: Props) => {
   };
 
   const handleHeartClick = useCallback(() => {
+    // Run inside a React transition to keep UI responsive while awaiting server action
     startTransition(() => {
-      likePostToggle(post)
-        .then(() => {
+      likePostToggle({ post }) // Call server action with the post
+        .then((response) => {
+          if (response?.error) {
+            toast.error(response.message || "Something went wrong.");
+            return;
+          }
+          // Toggle local "liked" state so the UI updates immediately
           setIsLiked((prev) => !prev);
         })
-        .catch(() => toast.error("Algo salió mal. Intenta de nuevo."));
+        .catch(() => toast.error("Something went wrong. Please try again."));
     });
   }, [post]);
 

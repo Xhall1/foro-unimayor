@@ -1,5 +1,6 @@
-- post como 4x5table
-- centar liderboard
-- notificaciones correctamente
-- seguir usuarios infinitos, permitir persinalizar perfil
-
+- post al hacer post, deshabilitar momentaneamente el boton de post - NO
+- centrar leaderboard
+- notificaciones correctamente, seguir, like, comment - working
+- en los comentarios seguir el formato de codigo ssh -> csr y funcionalidades de eliminar
+- seguir usuarios infinitos, permitir personalizar perfil, no permitir seguirse a uno mism
+- hacer que funcione la pagina topics correctamente, formato de codigo y funcionalidad
