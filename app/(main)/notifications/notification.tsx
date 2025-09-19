@@ -21,6 +21,8 @@ type Props = {
 export function Notifications({ notifications }: Props) {
   const [activeTab, setActiveTab] = useState("all");
 
+  const [pending, startTransition] = useTransition();
+
   const getIcon = (type: NotificationEnum) => {
     switch (type) {
       case "LIKE":
@@ -53,8 +55,6 @@ export function Notifications({ notifications }: Props) {
     }
   };
 
-  const [pending, startTransition] = useTransition();
-
   const handleDelete = useCallback((id: string) => {
     startTransition(() => {
       deleteNotification(id)
@@ -86,7 +86,7 @@ export function Notifications({ notifications }: Props) {
                 {getIcon(notification.type)}
               </div>
               <div className="flex-1">
-                <div className="flex items-center space-x-2 mb-1">
+                {/* <div className="flex items-center space-x-2 mb-1">
                   <Avatar>
                     <AvatarImage
                       src={notification.user.image ?? undefined}
@@ -101,24 +101,24 @@ export function Notifications({ notifications }: Props) {
                   <span className="font-semibold">
                     {notification.user.name}
                   </span>
-                </div>
+                </div> */}
                 <p className="text-sm text-gray-600">{notification.body}</p>
                 <span className="text-xs text-gray-400">
                   {notification.createdAt.toLocaleString()}
                 </span>
               </div>
-              <div className="">
-                <Button className="text-blue-500">
-                  <Check className="h-5 w-5" />
-                </Button>
+              <div className="flex aling-center justify-center">
                 <Button
+                  className="text-blue-500"
                   onClick={() => handleDelete(notification.id)}
-                  className="text-red-500"
                   variant="ghost"
                   disabled={pending}
                 >
-                  <X className="h-5 w-5" />
+                  <Check className="h-5 w-5" />
                 </Button>
+                {/* <Button className="text-red-500">
+                  <X className="h-5 w-5" />
+                </Button> */}
               </div>
             </div>
           ))}

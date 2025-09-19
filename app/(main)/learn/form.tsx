@@ -80,7 +80,8 @@ export function Form({ name, image }: Props) {
   };
 
   return (
-    <div className="bg-background border border-border rounded-lg p-4 mb-4">
+    // <div className="bg-background border border-border rounded-lg p-4 mb-4">
+    <div className="w-full max-w-[600px] mx-auto bg-background border border-border rounded-lg shadow-sm p-4 mb-4">
       <form onSubmit={handleSubmit}>
         <div className="flex items-start space-x-4">
           <Avatar name={name} image={image} />

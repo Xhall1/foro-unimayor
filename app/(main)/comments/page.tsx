@@ -2,7 +2,7 @@
 
 import { useState, useTransition, useEffect } from "react";
 import { notFound } from "next/navigation";
-import { Post } from "@/components/Post";
+import { Post } from "@/components/post-user";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getPost, getCurrentUser, createComment } from "@/actions/user-comment";
@@ -94,7 +94,11 @@ export default function CommentsPage({
             ) : (
               <ul className="space-y-4">
                 {comments.map((comment) => (
-                  <Comment key={comment.id} comment={comment} currentUserId={currentUser?.id} />
+                  <Comment
+                    key={comment.id}
+                    comment={comment}
+                    currentUserId={currentUser?.id}
+                  />
                 ))}
               </ul>
             )}
