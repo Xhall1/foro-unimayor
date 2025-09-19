@@ -39,6 +39,18 @@ export async function followUserToggle(userToFollow: User) {
       data: { followingIds: updatedFollowingIds },
     });
 
+    // Notify follow action
+    if (!isFollowing) {
+      console.log("sending notification follow...");
+      await client.notification.create({
+        data: {
+          body: `${user.firstName} ${user.lastName} started following you.`,
+          authUserId: targetUser.authUserId, // 👈 Clerk ID desde la DB, no el id interno
+          type: "FOLLOW",
+        },
+      });
+    }
+
     revalidatePath("/profile");
     revalidatePath(`/profile/${userToFollow.username}`);
 

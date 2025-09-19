@@ -5,9 +5,10 @@ const prisma = new PrismaClient();
 async function cleanDatabase() {
   try {
     // Eliminar todos los datos de las tablas
-    await prisma.comment.deleteMany({});
-    await prisma.post.deleteMany({});
-    await prisma.user.deleteMany({});
+    // await prisma.comment.deleteMany({});
+    // await prisma.post.deleteMany({});
+    // await prisma.user.deleteMany({});
+    await prisma.notification.deleteMany({});
 
     console.log("Database cleaned successfully");
   } catch (error) {

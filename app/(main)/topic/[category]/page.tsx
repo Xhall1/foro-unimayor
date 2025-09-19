@@ -3,7 +3,7 @@ import { FeedWrapper } from "@/components/feed-wrapper";
 import { StickyWrapper } from "@/components/sticky-wrapper";
 import { TrendingList } from "@/components/trending-list";
 import { getPosts, getAuthUser } from "@/prisma/queries";
-import { Post } from "@/components/Post";
+import { Post } from "@/components/post";
 import { Category } from "@prisma/client";
 
 const categoryMap: { [key: string]: Category } = {
@@ -31,7 +31,7 @@ const TopicPage = async ({ params }: { params: { category?: string } }) => {
 
   const [user, posts] = await Promise.all([
     getAuthUser(),
-    getPosts({ category })  // Pasando el filtro de categoría a getPosts
+    getPosts({ category }), // Pasando el filtro de categoría a getPosts
   ]);
 
   if (!user) {
@@ -49,7 +49,9 @@ const TopicPage = async ({ params }: { params: { category?: string } }) => {
             <Post key={post.id} post={post} currentUserId={user.authUserId} />
           ))}
           {posts.length === 0 && (
-            <p className="text-center text-gray-500">No hay posts en esta categoría aún.</p>
+            <p className="text-center text-gray-500">
+              No hay posts en esta categoría aún.
+            </p>
           )}
         </div>
       </FeedWrapper>
@@ -60,4 +62,4 @@ const TopicPage = async ({ params }: { params: { category?: string } }) => {
   );
 };
 
-export default TopicPage;  
+export default TopicPage;
